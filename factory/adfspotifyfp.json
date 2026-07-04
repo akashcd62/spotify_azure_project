@@ -1,0 +1,15 @@
+{
+	"name": "adfspotifyfp",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "southindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "3f4f1ba5-077d-4ed2-bb27-fcd7b0a64912",
+		"tenantId": "961ecd6b-096a-4177-8e94-9c90c33208ad"
+	}
+}
