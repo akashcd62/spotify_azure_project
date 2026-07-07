@@ -5,7 +5,14 @@
 			{
 				"name": "Copy data1",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "getcdcfilecontent",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -13,10 +20,13 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "SELECT * \nFROM @{pipeline().parameters.schema}.@{pipeline().parameters.Table}\nWHERE @{pipeline().parameters.cdc_col}>'activity('getcdcfilecontent').output.value[0]'",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -91,6 +101,17 @@
 				}
 			}
 		],
+		"parameters": {
+			"schema": {
+				"type": "string"
+			},
+			"Table": {
+				"type": "string"
+			},
+			"cdc_col": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
