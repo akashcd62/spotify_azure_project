@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfspotifyfp"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"Azuresql_ls_password": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://spotifyscproject.dfs.core.windows.net/"
+		},
+		"Azuresql_ls_properties_typeProperties_server": {
+			"value": "azurespotifysqldb.database.windows.net"
+		},
+		"Azuresql_ls_properties_typeProperties_database": {
+			"value": "free-sql-db-1564226"
+		},
+		"Azuresql_ls_properties_typeProperties_userName": {
+			"value": "akash"
+		}
+	}
+}
