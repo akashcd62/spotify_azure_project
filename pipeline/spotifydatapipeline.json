@@ -31,7 +31,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "SELECT * \nFROM @{pipeline().parameters.schema}.@{pipeline().parameters.Table}\nWHERE @{pipeline().parameters.cdc_col}>'activity('getcdcfilecontent').output.value[0].cdc_timestamp'\n",
+							"value": "SELECT * \nFROM @{pipeline().parameters.schema}.@{pipeline().parameters.Table}\nWHERE @{pipeline().parameters.cdc_col}>'@{activity('getcdcfilecontent').output.value[0].cdc_timestamp}'\n",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
