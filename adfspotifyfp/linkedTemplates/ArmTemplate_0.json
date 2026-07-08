@@ -147,12 +147,22 @@
 					"referenceName": "AzureDataLakeStorage1",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"container": {
+						"type": "string"
+					},
+					"folder": {
+						"type": "string"
+					},
+					"file": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileSystem": "bronze"
+						"type": "AzureBlobFSLocation"
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -177,6 +187,12 @@
 						"dependsOn": [
 							{
 								"activity": "getcdcfilecontent",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "getcurrent_date",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -232,7 +248,14 @@
 							{
 								"referenceName": "datalakestorage_gen2",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"container": "bronze",
+									"folder": "Users",
+									"file": {
+										"value": "@concat(pipeline().parameters.Table,'_',variables('current'))",
+										"type": "Expression"
+									}
+								}
 							}
 						]
 					},
@@ -271,6 +294,23 @@
 							},
 							"firstRowOnly": false
 						}
+					},
+					{
+						"name": "getcurrent_date",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "current",
+							"value": {
+								"value": "@utcNow()",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"policy": {
@@ -285,6 +325,11 @@
 					},
 					"cdc_col": {
 						"type": "string"
+					}
+				},
+				"variables": {
+					"current": {
+						"type": "String"
 					}
 				},
 				"annotations": []
