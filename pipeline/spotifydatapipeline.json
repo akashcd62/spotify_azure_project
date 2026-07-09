@@ -260,7 +260,7 @@
 													{
 														"name": "cdc_timestamp",
 														"value": {
-															"value": "split(@{activity('get_max_cdc').output.resultSets[0].rows[0].cdc_timestamp},'T')[0]",
+															"value": "@split(activity('get_max_cdc').output.resultSets[0].rows[0].cdc_timestamp,'T')[0]",
 															"type": "Expression"
 														}
 													}
