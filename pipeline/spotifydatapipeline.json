@@ -336,7 +336,7 @@
 					},
 					{
 						"schema": "dbo",
-						"table": "DimTrack",
+						"table": "DimDate",
 						"cdc_col": "updated_at",
 						"from_date": ""
 					},
