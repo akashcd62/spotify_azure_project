@@ -227,7 +227,7 @@
 												{
 													"type": "Query",
 													"text": {
-														"value": "SELECT CAST(max(@{item().cdc_col})as DATE) as cdc_timestamp\nFROM @{item().schema}.@{item().table}\n",
+														"value": "SELECT max(@{item().cdc_col}) as cdc_timestamp\nFROM @{item().schema}.@{item().table}\n",
 														"type": "Expression"
 													}
 												}
@@ -261,7 +261,7 @@
 													{
 														"name": "cdc_timestamp",
 														"value": {
-															"value": "@split(activity('get_max_cdc').output.resultSets[0].rows[0].cdc_timestamp,'T')[0]",
+															"value": "@activity('get_max_cdc').output.resultSets[0].rows[0].cdc_timestamp",
 															"type": "Expression"
 														}
 													}
