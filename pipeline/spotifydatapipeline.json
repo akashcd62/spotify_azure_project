@@ -343,7 +343,7 @@
 					{
 						"schema": "dbo",
 						"table": "DimDate",
-						"cdc_col": "date_key",
+						"cdc_col": "date",
 						"from_date": ""
 					},
 					{
